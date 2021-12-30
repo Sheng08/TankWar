@@ -1,0 +1,48 @@
+{
+  "name": "superframe",
+  "version": "3.2.0",
+  "description": "Kevin's collection of A-Frame components and scenes.",
+  "scripts": {
+    "build": "NODE_ENV=production webpack --config webpack-dev.config.js",
+    "dev": "webpack-dev-server --config webpack-dev.config.js",
+    "postpublish": "npm run dist",
+    "readme": "node scripts/readme.js",
+    "site": "node site/generate",
+    "start": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supermedium/superframe.git"
+  },
+  "keywords": [
+    "3d",
+    "a-frame",
+    "a-frame-components",
+    "aframe",
+    "aframe-component",
+    "aframe-components",
+    "k-frame",
+    "kframe",
+    "three",
+    "threejs",
+    "vr",
+    "webvr"
+  ],
+  "author": "Kevin Ngo <kevin@supermedium.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/supermedium/superframe/issues"
+  },
+  "homepage": "https://github.com/supermedium/superframe#readme",
+  "devDependencies": {
+    "browser-sync": "^2.16.0",
+    "cheerio": "^0.22.0",
+    "glob": "^7.1.3",
+    "http-server": "^0.9.0",
+    "nunjucks": "^2.5.2",
+    "shader-loader": "^1.3.0",
+    "webpack": "^1.13.2",
+    "webpack-dev-server": "^1.15.2",
+    "webpack-glsl-loader": "^1.0.1"
+  }
+}

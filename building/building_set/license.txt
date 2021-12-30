@@ -1,0 +1,11 @@
+Model Information:
+* title:	Building Set
+* source:	https://sketchfab.com/3d-models/building-set-6ab39c80de944a6cac9ef7a0e43314e6
+* author:	nermin (https://sketchfab.com/nermin)
+
+Model License:
+* license type:	CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)
+* requirements:	Author must be credited. Modified versions must have the same license. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Building Set" (https://sketchfab.com/3d-models/building-set-6ab39c80de944a6cac9ef7a0e43314e6) by nermin (https://sketchfab.com/nermin) licensed under CC-BY-SA-4.0 (http://creativecommons.org/licenses/by-sa/4.0/)

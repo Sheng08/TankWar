@@ -1,0 +1,19 @@
+# NPM
+node_modules
+npm-debug.log
+package-lock.json
+
+# WebStorm user-specific
+.idea/workspace.xml
+.idea/tasks.xml
+
+# VSCode user-specific
+*.vscode
+
+# Generate data
+.eslintcache
+coverage
+*.tgz
+.nyc_output
+doc/*
+!doc/cesium.png

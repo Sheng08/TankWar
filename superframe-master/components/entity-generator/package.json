@@ -1,0 +1,38 @@
+{
+  "name": "aframe-entity-generator-component",
+  "version": "3.0.2",
+  "description": "Generate a number of entities in A-Frame given a mixin",
+  "main": "index.js",
+  "scripts": {
+    "build": "browserify examples/main.js -o examples/build.js",
+    "dev": "budo examples/main.js:examples/build.js --port 8000 --live --open",
+    "dist": "webpack index.js dist/aframe-entity-generator-component.js && webpack -p index.js dist/aframe-entity-generator-component.min.js",
+    "postpublish": "npm run dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/supermedium/superframe.git"
+  },
+  "keywords": [
+    "aframe",
+    "aframe-component",
+    "aframe-vr",
+    "vr",
+    "mozvr",
+    "webvr"
+  ],
+  "author": "Kevin Ngo <me@ngokevin.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/supermedium/superframe/issues"
+  },
+  "homepage": "https://github.com/supermedium/superframe/tree/components/entity-generator#readme",
+  "devDependencies": {
+    "aframe": "^0.3.0",
+    "aframe-randomizer-components": "^0.2.0",
+    "browserify": "^12.0.1",
+    "budo": "^7.1.0",
+    "shelljs": "^0.6.0",
+    "webpack": "^1.12.9"
+  }
+}

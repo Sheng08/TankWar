@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>test</title>
+  <meta charset="utf-8">
+  <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"
+    integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg=="
+    crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.0.4/socket.io.js"
+    integrity="sha512-aMGMvNYu8Ue4G+fHa359jcPb1u+ytAF+P2SCb+PxrjCdO3n3ZTxJ30zuH39rimUggmTwmh2u7wvQsDTHESnmfQ=="
+    crossorigin="anonymous"></script>
+  <script src="./aframe-master/dist/aframe-v1.2.0.min.js"></script>
+  <!-- <script src="https://aframe.io/releases/0.8.2/aframe.min.js"></script -->
+  <script src="https://unpkg.com/aframe-environment-component@1.2.0/dist/aframe-environment-component.min.js"></script>
+  <!-- <script src="https://unpkg.com/aframe-particle-system-component@1.0.8/dist/aframe-particle-system-component.min.js"></script> -->
+  <script src="https://unpkg.com/aframe-event-set-component@4.2.1/dist/aframe-event-set-component.min.js"></script>
+  <!-- <script src="https://unpkg.com/aframe-mountain-component@^0.3.3/aframe-mountain-component.min.js"></script> -->
+  <script src="./superframe-master/components/mountain/dist/aframe-mountain-component.min.js"></script>
+  <script src="https://mixedreality.mozilla.org/ammo.js/builds/ammo.wasm.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/n5ro/aframe-physics-system@v4.0.1/dist/aframe-physics-system.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <!-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+    integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous">
+  </script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+    integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous">
+  </script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+    integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous">
+  </script>
+  <!-- 新版本問題 -->
+  <!-- <script src="https://unpkg.com/aframe-orbit-controls@1.2.0/dist/aframe-orbit-controls.min.js"></script> -->
+
+  <!-- <script
+    src="https://cdn.rawgit.com/tizzle/aframe-orbit-controls-component/v0.1.14/dist/aframe-orbit-controls-component.min.js">
+  </script> -->
+  <!-- <script type="text/javascript" src="https://raw.githubusercontent.com/subsumo/aframe-orbit-controls/master/dist/aframe-orbit-controls-component.js"></script> -->
+  <!-- <script src="https://unpkg.com/aframe-supercraft-loader@3.0.0/dist/aframe-supercraft-loader.js"></script> -->
+
+  <!-- <script src="https://cdn.jsdelivr.net/npm/aframe-orbit-controls-component-2@0.1.14/index.min.js"></script> -->
+  <script src="./aframe-master/dist/aframe-orbit-controls-component.min.js"></script>
+  <script src="./aframe-master/dist/aframe-extras.min.js"></script>
+  <!-- <script src="./aframe-master/dist/aframe-physics-system.min.js"></script> -->
+  <script src="./aframe-master/dist/aframe-super-shooter-kit.min.js"></script>
+  <script src="./aframe-master/dist/aframe-particle-system-component.min.js"></script>
+
+
+  <!-- <script src="https://unpkg.com/aframe-spe-particles-component@^1.0.4/dist/aframe-spe-particles-component.min.js"> -->
+  <!-- </script> -->
+  <!-- <script src="https://unpkg.com/aframe-animation-component/dist/aframe-animation-component.min.js"></script>
+  <script src="https://unpkg.com/aframe-layout-component/dist/aframe-layout-component.min.js"></script> -->
+
+  <!-- <script src="./aframe-master/dist/aframe-spe-particles-component.js"></script> -->
+
+  <!-- <script src="https://unpkg.com/aframe-orbit-controls@1.3.0/dist/aframe-orbit-controls.min.js"></script> -->
+  <!-- <script src="./superframe-master/components/orbit-controls/dist/aframe-orbit-controls.js"></script> -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/aframe-orbit-controls-component"></script> -->
+
+  <script src="./index.js"></script>
+
+  <style>
+    .progress-bar {
+      background-color: #1a1a1a;
+      height: 25px;
+      padding: 5px;
+      width: 350px;
+      margin: 00px 0 20px 0;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      -moz-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+      -webkit-box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+      box-shadow: 0 1px 5px #000 inset, 0 1px 0 #444;
+      position: relative;
+    }
+
+    .progress-bar span {
+      display: block;
+      float: right;
+      height: 100%;
+      background-color: #777;
+      -moz-border-radius: 3px;
+      -webkit-border-radius: 3px;
+      border-radius: 3px;
+      -moz-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+      -webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+      box-shadow: 0 1px 0 rgba(255, 255, 255, .5) inset;
+      -webkit-transition: width .4s ease-in-out;
+      -moz-transition: width .4s ease-in-out;
+      -ms-transition: width .4s ease-in-out;
+      -o-transition: width .4s ease-in-out;
+      transition: width .4s ease-in-out;
+    }
+
+
+    .blue span {
+      background-color: #28a745;
+    }
+  </style>
+
+
+  <script>
+    AFRAME.registerComponent('car_enemy', {
+      init: function () {
+        // window.addEventListener('keydown', this.onKeyDown_you.bind(this))
+        // window.addEventListener('keyup', this.onKeyUp_you.bind(this))
+
+        // this.sounds = document.querySelector('#drive_sound');
+        // this.w = document.querySelector('#w');
+        // this.a = document.querySelector('#A');
+        // this.s = document.querySelector('#s');
+        // this.d = document.querySelector('#d');
+        self.rotating_you = 0; // Analog, -1 left, +1 right
+        self.speeding = 0; // Analog, -1 slower, +1 faster
+        this.speed = 0.0
+        this.maxSpeed = 3; // m/s
+        this.rotationRate = Math.PI / 3; // radian/s
+        this.speedIncrement = 6 // m/s^2;
+
+        socket.on('move_down', function (msg, cb) {
+          console.log(msg, mySid)
+          if (msg.mysid != mySid) {
+            if (msg.down == 'a_down') {
+              self.rotating_you = 1;
+              console.log("AAA")
+            } else if (msg.down == 'd_down') {
+              console.log("DDD")
+              self.rotating_you = -1;
+            } else if (msg.down == 'w_down') {
+              console.log("WWW")
+              self.speeding = 1;
+            } else if (msg.down == 's_down') {
+              console.log("SSS")
+              self.speeding = -1;
+            }
+          }
+
+        });
+        socket.on('move_up', function (msg, cb) {
+          if (msg.mysid != mySid) {
+            if (msg.up == 'a_up' || msg.up == 'd_up') {
+              self.rotating_you = 0;
+            } else if (msg.up == 'w_up' || msg.up == 's_up') {
+              self.speeding = 0;
+            }
+          }
+
+          // if (msg.up == 'a_up') {
+          //   self.rotating_you = 0;
+          //   console.log("aaa")
+          // } else if (msg.up == 'd_up') {
+          //   console.log("ddd")
+          //   self.rotating_you = 0;
+          // } else if (msg.up == 'w_up') {
+          //   console.log("www")
+          //   self.speeding = 0;
+          // } else if (msg.up == 's_up') {
+          //   console.log("sss")
+          //   self.speeding = 0;
+          // }
+        });
+      },
+
+      // onKeyDown_you: function (e) {
+      //   if (enemy_move_down == 'a_down') { //A 左
+      //     this.rotating_you = -1;
+      //     console.log("AAA")
+      //   } else if (enemy_move_down == 'd_down') { //D 右
+      //     console.log("DDD")
+      //     this.rotating_you = 1;
+      //   } else if (enemy_move_down == 'w_down') { //W 上
+      //     console.log("WWW")
+      //     this.speeding = -1;
+      //     // this.sounds.components.sound.playSound();
+      //   } else if (enemy_move_down == 's_down') { //S 下
+      //     console.log("SSS")
+      //     this.speeding = 1;
+      //     // this.sounds.components.sound.playSound();
+      //   }
+      //   // enemy_move='';
+      // },
+      // onKeyUp_you: function (e) {
+      //   if (enemy_move_up == 'a_up' || enemy_move_up == 'd_up') { //A 左
+      //     console.log("aaa")
+      //     this.rotating_you = 0
+      //   } else if (enemy_move_up == 'w_up' || enemy_move_up == 's_up') { //W 上
+      //     console.log("www")
+      //     this.speeding = 0
+      //   }
+      //   // enemy_move='';
+      // },
+
+      tick: function (time, timeDelta) {
+        // console.log(self.rotating_you)
+        // Cap the time delta to avoid unreasonable jumps after pauses.
+        let deltaSeconds = Math.min(timeDelta / 1000, 1 / 30);
+        // console.log('deltaSeconds', deltaSeconds, 'from', timeDelta);
+        if (Math.abs(this.speed) > 0.5 && self.rotating_you != 0) {
+          const direction = this.speed > 0 ? 1 : -1;
+          this.el.object3D.rotateY(-(direction * self.rotating_you * this.rotationRate * deltaSeconds))
+        }
+        if (self.speeding != 0) {
+          this.speed = this.speed + self.speeding * this.speedIncrement * deltaSeconds;
+          if (self.speeding > 0) {
+            this.speed = Math.min(this.speed, this.maxSpeed);
+          } else {
+            this.speed = Math.max(this.speed, -this.maxSpeed);
+          }
+        }
+        const position = this.el.getAttribute('position')
+        const rotation = this.el.getAttribute('rotation')
+        // console.log(position)
+        const angle = Math.PI * rotation.y / 180
+        //if (this.speed != 0) console.log(this.speeding, this.speed, angle);
+        position.x += (this.speed * Math.sin(angle) * deltaSeconds);
+        position.z += (this.speed * Math.cos(angle) * deltaSeconds);
+        // this.el.setAttribute('position', position)
+        if (self.speeding == 0 && this.speed > 0) {
+          this.speed = Math.max(this.speed - this.speedIncrement * deltaSeconds / 2, 0)
+
+        }
+        if (self.speeding == 0 && this.speed < 0) {
+          this.speed = Math.min(this.speed + this.speedIncrement * deltaSeconds / 2, 0)
+        }
+        if (this.speed == 0) {
+          // this.sounds.components.sound.pauseSound();
+          // this.rotating =0
+        }
+      }
+    })
+    AFRAME.registerComponent('car2', {
+      init: function () {
+        window.addEventListener('keydown', this.onKeyDown_you.bind(this))
+        window.addEventListener('keyup', this.onKeyUp_you.bind(this))
+
+        // this.sounds = document.querySelector('#drive_sound');
+        this.w = document.querySelector('#w');
+        this.a = document.querySelector('#A');
+        this.s = document.querySelector('#s');
+        this.d = document.querySelector('#d');
+        this.rotating = 0; // Analog, -1 left, +1 right
+        this.speeding = 0; // Analog, -1 slower, +1 faster
+        this.speed = 0.0
+        this.maxSpeed = 3; // m/s
+        this.rotationRate = Math.PI / 3; // radian/s
+        this.speedIncrement = 6 // m/s^2;
+      },
+
+      onKeyDown_you: function (e) {
+        if (e.keyCode == 65) { //A 左
+          this.rotating = 1;
+        } else if (e.keyCode == 68) { //D 右
+          this.rotating = -1;
+        } else if (e.keyCode == 87) { //W 上
+          this.speeding = 1;
+          // this.sounds.components.sound.playSound();
+        } else if (e.keyCode == 83) { //S 下
+          this.speeding = -1;
+          // this.sounds.components.sound.playSound();
+        }
+      },
+      onKeyUp_you: function (e) {
+        if (e.keyCode == 65) { //A 左
+          this.rotating = 0
+        } else if (e.keyCode == 68) { //D 右
+          this.rotating = 0
+        } else if (e.keyCode == 87) { //W 上
+          this.speeding = 0
+        } else if (e.keyCode == 83) { //S 下
+          this.speeding = 0
+        }
+      },
+      tick: function (time, timeDelta) {
+        // Cap the time delta to avoid unreasonable jumps after pauses.
+        let deltaSeconds = Math.min(timeDelta / 1000, 1 / 30);
+        // console.log('deltaSeconds', deltaSeconds, 'from', timeDelta);
+        if (Math.abs(this.speed) > 0.5 && this.rotating != 0) {
+          const direction = this.speed > 0 ? 1 : -1;
+          this.el.object3D.rotateY(-(direction * this.rotating * this.rotationRate * deltaSeconds))
+        }
+        if (this.speeding != 0) {
+          this.speed = this.speed + this.speeding * this.speedIncrement * deltaSeconds;
+          if (this.speeding > 0) {
+            this.speed = Math.min(this.speed, this.maxSpeed);
+          } else {
+            this.speed = Math.max(this.speed, -this.maxSpeed);
+          }
+        }
+        const position = this.el.getAttribute('position')
+        const rotation = this.el.getAttribute('rotation')
+        // console.log(position)
+        const angle = Math.PI * rotation.y / 180
+        //if (this.speed != 0) console.log(this.speeding, this.speed, angle);
+        position.x += (this.speed * Math.sin(angle) * deltaSeconds);
+        position.z += (this.speed * Math.cos(angle) * deltaSeconds);
+        // this.el.setAttribute('position', position)
+        if (this.speeding == 0 && this.speed > 0) {
+          this.speed = Math.max(this.speed - this.speedIncrement * deltaSeconds / 2, 0)
+
+        }
+        if (this.speeding == 0 && this.speed < 0) {
+          this.speed = Math.min(this.speed + this.speedIncrement * deltaSeconds / 2, 0)
+        }
+        if (this.speed == 0) {
+          // this.sounds.components.sound.pauseSound();
+        }
+      }
+    })
+
+    AFRAME.registerComponent('car', {
+      init: function () {
+        window.addEventListener('keydown', this.onKeyDown.bind(this))
+        window.addEventListener('keyup', this.onKeyUp.bind(this))
+
+        this.sounds = document.querySelector('#drive_sound');
+        this.w = document.querySelector('#w');
+        this.a = document.querySelector('#A');
+        this.s = document.querySelector('#s');
+        this.d = document.querySelector('#d');
+        this.rotating = 0; // Analog, -1 left, +1 right
+        this.speeding = 0; // Analog, -1 slower, +1 faster
+        this.speed = 0.0
+        this.maxSpeed = 3; // m/s
+        this.rotationRate = Math.PI / 3; // radian/s
+        this.speedIncrement = 6 // m/s^2;
+
+        // var enemy = document.querySelector("#enemy");
+        // 			// inside an a-frame component - this is straight from the docs
+        //       enemy.addEventListener("collidestart", evt => {
+        //         alert("Hit");
+        //     });
+      },
+      // onAxisMoveSpeed: function (e) {
+      //   // Negate because Gamepad API axis "forward" is -1.
+      //   this.speeding = -e.detail.axis[1];
+
+      // },
+      // onAxisMoveAngle: function (e) {
+      //   this.rotating = e.detail.axis[0];
+      // },
+      onKeyDown: function (e) {
+        if ($('#join_room').val() === '') {
+          socket.emit('tank_down', {
+            data: "noRoom"
+          });
+          return false
+        }
+        if (e.keyCode == 65) { //A 左
+          this.rotating = 1;
+          this.a.src = 'icon/icon_down/letter-a.png'
+          socket.emit('tank_down', {
+            data: "a_down",
+            room: $('#join_room').val()
+          });
+
+        } else if (e.keyCode == 68) { //D 右
+          this.rotating = -1;
+          this.d.src = 'icon/icon_down/letter-d.png'
+          socket.emit('tank_down', {
+            data: "d_down",
+            room: $('#join_room').val()
+          });
+
+        } else if (e.keyCode == 87) { //W 上
+          this.speeding = -1;
+          this.sounds.components.sound.playSound();
+          // console.log(this.w.src)
+          this.w.src = 'icon/icon_down/letter-w.png'
+          socket.emit('tank_down', {
+            data: "w_down",
+            room: $('#join_room').val()
+          });
+          // socket.emit('tank_w_down', {id:"1", data: "w"});
+          // socket.emit('my_event', {data: $('#emit_data').val()});
+          // console.log($('#join_room').val())
+        } else if (e.keyCode == 83) { //S 下
+          this.speeding = 1;
+          this.sounds.components.sound.playSound();
+          this.s.src = 'icon/icon_down/letter-s.png'
+          socket.emit('tank_down', {
+            data: "s_down",
+            room: $('#join_room').val()
+          });
+
+        }
+      },
+      onKeyUp: function (e) {
+        // if (e.keyCode == 65 || e.keyCode == 68) {
+        //   this.rotating = 0
+        // } else if (e.keyCode == 87 || e.keyCode == 83) {
+        //   this.speeding = 0
+        // }
+        if ($('#join_room').val() === '') {
+          socket.emit('tank_up', {
+            data: "noRoom"
+          });
+          return false
+        }
+        if (e.keyCode == 65) { //A 左
+          this.rotating = 0
+          this.a.src = 'icon/letter-a.png'
+          socket.emit('tank_up', {
+            data: "a_up",
+            room: $('#join_room').val()
+          });
+          // socket.emit('tank_up', {data: "a"});
+        } else if (e.keyCode == 68) { //D 右
+          this.rotating = 0
+          this.d.src = 'icon/letter-d.png'
+          socket.emit('tank_up', {
+            data: "d_up",
+            room: $('#join_room').val()
+          });
+          // socket.emit('tank_up', {data: "d"});
+        } else if (e.keyCode == 87) { //W 上
+          this.speeding = 0
+          this.w.src = 'icon/letter-w.png'
+          socket.emit('tank_up', {
+            data: "w_up",
+            room: $('#join_room').val()
+          });
+          // socket.emit('tank_up', {data: "w"});
+        } else if (e.keyCode == 83) { //S 下
+          this.speeding = 0
+          this.s.src = 'icon/letter-s.png'
+          socket.emit('tank_up', {
+            data: "s_up",
+            room: $('#join_room').val()
+          });
+          // socket.emit('tank_up', {data: "s"});
+        }
+      },
+      tick: function (time, timeDelta) {
+        // Cap the time delta to avoid unreasonable jumps after pauses.
+        let deltaSeconds = Math.min(timeDelta / 1000, 1 / 30);
+        // console.log('deltaSeconds', deltaSeconds, 'from', timeDelta);
+        if (Math.abs(this.speed) > 0.5 && this.rotating != 0) {
+          const direction = this.speed > 0 ? -1 : 1;
+          this.el.object3D.rotateY(direction * this.rotating * this.rotationRate * deltaSeconds)
+        }
+        if (this.speeding != 0) {
+          this.speed = this.speed + this.speeding * this.speedIncrement * deltaSeconds;
+          if (this.speeding > 0) {
+            this.speed = Math.min(this.speed, this.maxSpeed);
+          } else {
+            this.speed = Math.max(this.speed, -this.maxSpeed);
+          }
+        }
+        const position = this.el.getAttribute('position')
+        const rotation = this.el.getAttribute('rotation')
+        // console.log(position)
+        const angle = Math.PI * rotation.y / 180
+        //if (this.speed != 0) console.log(this.speeding, this.speed, angle);
+        position.z += this.speed * Math.sin(angle) * deltaSeconds;
+        position.x += -(this.speed * Math.cos(angle) * deltaSeconds);
+        // this.el.setAttribute('position', position)
+        if (this.speeding == 0 && this.speed > 0) {
+          this.speed = Math.max(this.speed - this.speedIncrement * deltaSeconds / 2, 0)
+
+        }
+        if (this.speeding == 0 && this.speed < 0) {
+          this.speed = Math.min(this.speed + this.speedIncrement * deltaSeconds / 2, 0)
+        }
+        if (this.speed == 0) {
+          this.sounds.components.sound.pauseSound();
+        }
+      }
+    })
+
+    AFRAME.registerComponent('car-controller-two-axis', {
+      init: function () {
+        this.el.addEventListener('axismove', (ev) => {
+          const car = document.querySelector('[car]').components.car;
+          car.onAxisMoveAngle(ev);
+          car.onAxisMoveSpeed(ev);
+        });
+      }
+    })
+  </script>
+  <script>
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    AFRAME.registerComponent('physics_obj_me', {
+      schema: {
+        // model: {
+        //   default: ''
+        // },
+        body: {
+          type: 'string',
+          default: 'dynamic'
+        }, //dynamic: A freely-moving object.
+        shape: {
+          type: 'string',
+          default: 'hull'
+        }, // hull: Wraps a model in a convex hull, like a shrink-wrap
+        mass: {
+          type: 'int',
+          default: 0
+        },
+        isModel: {
+          type: 'bool',
+          default: false
+        },
+        offsets: {
+          type: 'string',
+          default: '0 0 0'
+        }
+      },
+      init: function () {
+        this.me = document.querySelector('#me');
+        this.el.addEventListener('model-loaded', () => {
+          sleep(10000).then(() => {
+            console.log("Hello");
+            this.me.setAttribute('ammo-body', {
+              type: this.data.body
+            })
+            this.me.setAttribute('ammo-shape', {
+              type: this.data.shape
+            })
+            this.me.setAttribute('ammo-shape', {
+              offset: "0 0.27 0"
+            })
+          });
+
+
+        })
+
+      },
+
+
+    });
+  </script>
+  <script>
+    AFRAME.registerComponent('physics_obj', {
+      schema: {
+        // model: {
+        //   default: ''
+        // },
+        body: {
+          type: 'string',
+          default: 'dynamic'
+        }, //dynamic: A freely-moving object.
+        shape: {
+          type: 'string',
+          default: 'hull'
+        }, // hull: Wraps a model in a convex hull, like a shrink-wrap
+        mass: {
+          type: 'int',
+          default: 0
+        },
+        isModel: {
+          type: 'bool',
+          default: false
+        },
+        offsets: {
+          type: 'string',
+          default: '0 0 0'
+        }
+      },
+      init: function () {
+        console.log(this.data.isModel)
+        // this.enemy = document.querySelector('#enemy');
+        // this.tank_me = document.querySelector('#tank_me');
+        // this.env = document.querySelector('#env');
+        // this.moun = document.querySelector('#moun');
+
+        // const gltfmodel = document.createElement('a-entity')
+        // this.el.appendChild(gltfmodel)
+        // gltfmodel.setAttribute('gltf-model', this.data.model)
+        // gltfmodel.setAttribute('shadow', {
+        //   receive: false
+        // })
+
+        // Specify what type of ammo-body (dynamic, static, kinematic)
+
+        // this.el.setAttribute('ammo-body', {
+        //   type: this.data.body
+
+        // })
+
+        // // Waiting for model to load before adding ammo-shape (box, cylinder, sphere, capsule, cone, hull)
+        // this.el.addEventListener('model-loaded', () => {
+        //   this.el.setAttribute('ammo-body', {
+        //   type: this.data.body
+
+        // })
+        //   this.el.setAttribute('ammo-shape', {
+        //     type: this.data.shape
+        //   })
+        //   // this.env.setAttribute('ammo-shape', {
+        //   //   type: this.data.shape
+        //   // })
+        //   // this.moun.setAttribute('ammo-shape', {
+        //   //   type: this.data.shape
+        //   // })
+        // })
+
+        if (this.data.isModel) {
+          // Waiting for model to load before adding ammo-shape (box, cylinder, sphere, capsule, cone, hull)
+          this.el.addEventListener('model-loaded', () => {
+            this.el.setAttribute('ammo-body', {
+              type: this.data.body
+
+            })
+            this.el.setAttribute('ammo-shape', {
+              type: this.data.shape
+            })
+            this.el.setAttribute('ammo-shape', {
+              offset: "0 0.27 0"
+              // offset: this.data.offsets
+            })
+            // this.env.setAttribute('ammo-shape', {
+            //   type: this.data.shape
+            // })
+            // this.moun.setAttribute('ammo-shape', {
+            //   type: this.data.shape
+            // })
+          })
+        } else {
+          this.el.setAttribute('ammo-body', {
+            type: this.data.body
+
+          })
+          this.el.setAttribute('ammo-shape', {
+            type: this.data.shape
+          })
+          // this.el.setAttribute('ammo-shape', {
+          //     offset: this.data.offset
+
+          //   })
+        }
+
+      },
+
+
+    });
+  </script>
+  <script>
+    AFRAME.registerComponent('modify-materials', {
+      init: function () {
+        window.addEventListener('keydown', this.onKeyDown2.bind(this))
+        window.addEventListener('keyup', this.onKeyUp2.bind(this))
+        // this.sounds = document.querySelector('');
+        self.gunEl = document.querySelector('#gun').object3D;
+
+        self.camera_f = document.querySelector('#camera_f').object3D;
+        self.camera = document.querySelector('#camera');
+        // this.enemy = document.querySelector('#enemy');
+        // this.tank_me = document.querySelector('#tank_me');
+        // this.env = document.querySelector('#env');
+        // this.moun = document.querySelector('#moun');
+
+        this.i = document.querySelector('#i');
+        this.j = document.querySelector('#j');
+        this.k = document.querySelector('#k');
+        this.l = document.querySelector('#l');
+        // console.log(self.camera.getAttribute("orbit-controls"))
+
+        this.barrel = 0;
+        this.turret = 0;
+        this.rotationRate2 = Math.PI / 2;
+        this.speedIncrement2 = 2;
+        self.rotationSpeed = 0.0;
+        self.rotationSpeed2 = 0.0;
+        const turretNodeList = [];
+        self.turretAngle = 0;
+        self.barrelAngle = 0;
+        // this.env.setAttribute('ammo-body', "type: static;");
+        // this.enemy.setAttribute('ammo-body', "");
+        this.el.addEventListener('model-loaded', () => {
+          // Grab the mesh / scene. ammo-body="" ammo-shape="type: box; emitCollisionEvents: true;"
+          const obj = this.el.getObject3D('mesh');
+          // console.log(this.el.children.getObject3D('#Barrel'))
+          // Go over the submeshes and modify materials we want.
+          // this.env.setAttribute('ammo-shape', {
+          //   type: static,
+          //   mass: 0
+          // });
+          // console.log(this.env.getAttribute)。
+          // this.env.setAttribute('ammo-body', "");
+
+          // this.env.setAttribute('ammo-shape', "");
+
+
+          // this.enemy.setAttribute('ammo-shape', "");
+
+          // this.tank_me.setAttribute('ammo-shape', "");
+          console.log(obj)
+          obj.traverse(node => {
+
+            if (node.name == 'Barrel') {
+              this.barrel_node = node;
+              const node_b = node;
+              node.parent = this.node_t
+              node.add(self.gunEl)
+              node.add(self.camera_f)
+              console.log(node)
+            }
+            console.log(node.name)
+            if (node.name.includes('Turret') || node.name.includes('Manual_MG') || node.name.includes(
+                'RC_MG') || (node.name.includes('Alpha') && node.material.name == 'glass_png')) {
+              turretNodeList.push(node);
+            }
+            if (node.name == 'Turret' && node.material.name == 'tex_0026_1_png') {
+              this.node_t = node;
+              console.log(123)
+            }
+            if (node.name == 'Alpha' && node.material.name == 'tex_0026_3_png') {
+              node.visible = false;
+            }
+          });
+
+
+          this.turretNodeListFinal = turretNodeList;
+          this.node_t.children[0] = this.barrel_node
+          console.log(turretNodeList)
+        });
+      },
+      onKeyDown2: function (e) {
+        if (e.keyCode == 74) { //J 左
+          this.turret = 1;
+          this.j.src = 'icon/icon_down/letter-j.png'
+        } else if (e.keyCode == 76) { //L 右
+          this.turret = -1;
+          this.l.src = 'icon/icon_down/letter-l.png'
+        } else if (e.keyCode == 73) { //I 上
+          this.barrel = 1;
+          this.i.src = 'icon/icon_down/letter-i.png'
+        } else if (e.keyCode == 75) { //K 下
+          this.barrel = -1;
+          this.k.src = 'icon/icon_down/letter-k.png'
+        }
+      },
+      onKeyUp2: function (e) {
+        // if (e.keyCode == 74 || e.keyCode == 76) {
+        //   this.turret = 0
+        // } else if (e.keyCode == 73 || e.keyCode == 75) {
+        //   this.barrel = 0
+        // }
+        if (e.keyCode == 74) { //J 左
+          this.turret = 0
+          this.j.src = 'icon/letter-j.png'
+        } else if (e.keyCode == 76) { //L 右
+          this.turret = 0
+          this.l.src = 'icon/letter-l.png'
+        } else if (e.keyCode == 73) { //I 上
+          this.barrel = 0
+          this.i.src = 'icon/letter-i.png'
+        } else if (e.keyCode == 75) { //K 下
+          this.barrel = 0
+          this.k.src = 'icon/letter-k.png'
+        }
+      },
+      tick: function (time, timeDelta) {
+        // let deltaSeconds = Math.min(timeDelta / 1000, 1 / 30);
+        let deltaSeconds = 1 / 30;
+        let t = this.turret;
+        let b = this.barrel;
+        let r2 = this.rotationRate2;
+
+        if (this.turret != 0) {
+          if (this.turret == 1) {
+            if (self.turretAngle >= 10.0) {
+              self.turretAngle = 10.0
+            } else {
+              self.rotationSpeed += (5 * deltaSeconds);
+              self.turretAngle = (1 * r2 * deltaSeconds * self.rotationSpeed)
+            }
+            this.turretNodeListFinal.forEach(function (item) {
+              item.rotation.y = self.turretAngle;
+            });
+          } else {
+            if (self.turretAngle <= -10.0) {
+              self.turretAngle = -10.0
+            } else {
+              self.rotationSpeed -= (5 * deltaSeconds);
+              self.turretAngle = (1 * r2 * deltaSeconds * self.rotationSpeed)
+            }
+            this.turretNodeListFinal.forEach(function (item) {
+              item.rotation.y = self.turretAngle;
+            });
+          }
+        }
+        if (this.barrel != 0) {
+          if (this.barrel == 1) {
+
+            if (self.barrelAngle >= 0.3) {
+              self.barrelAngle = 0.3
+            } else {
+              self.rotationSpeed2 += (2 * deltaSeconds);
+              self.barrelAngle = (1 * r2 * deltaSeconds * self.rotationSpeed2)
+            }
+            this.barrel_node.rotation.x = self.barrelAngle; //0.3 ~ -0.1
+          } else {
+            if (self.barrelAngle <= -0.1) {
+              self.barrelAngle = -0.1
+            } else {
+              self.rotationSpeed2 -= (2 * deltaSeconds);
+              self.barrelAngle = (1 * r2 * deltaSeconds * self.rotationSpeed2)
+            }
+            this.barrel_node.rotation.x = self.barrelAngle; //0.3 ~ -0.1
+          }
+        }
+      }
+    });
+  </script>
+  <script>
+    /**
+     * Click to shoot.
+     */
+    AFRAME.registerComponent('click-to-shoot', {
+      init: function () {
+        // document.body.addEventListener('mousedown', () => {
+        //   this.el.emit('shoot');
+        // });
+        // document.querySelectorAll('.Anime').emit('replay');
+        // console.log(document.querySelectorAll('.Anime'))
+        this.sounds = document.querySelector('#attack_sound');
+        this.bgm_f = document.querySelector('#bgm_f');
+        this.bgm = document.querySelector('#bgm');
+        // this.fire = document.querySelector('#fire');
+        // this.fire.components['particle-system'].stopParticles();
+
+        this.explosion2_img = document.querySelector('#explosion2_img');
+        this.bool = false
+        window.addEventListener('keydown', this.onKeyDown_shoot.bind(this));
+        window.addEventListener('keyup', this.onKeyUp_shoot.bind(this));
+        this.rings = document.querySelector('#rings-group-1');
+        this.schematic = document.querySelector('#schematic-2');
+
+        this.camera = document.querySelector('#camera');
+        this.camera_bool = this.camera.getAttribute("camera");
+
+        this.camera_f = document.querySelector('#camera_f');
+        this.camera_f_bool = this.camera_f.getAttribute("camera");
+        console.log(this.camera_bool) //true
+        console.log(typeof (this.camera_f_bool)) //false
+      },
+      onKeyDown_shoot: function (e) {
+        if (e.keyCode == 32) { // Space
+          this.el.emit('shoot');
+          this.sounds.components.sound.stopSound();
+          this.sounds.components.sound.playSound();
+          // this.aim.components.src="#explosin2"
+          this.explosion2_img.setAttribute('visible', true);
+          // this.fire.components['particle-system'].startParticles();
+          // this.fire.components['particle-system'].stopParticles();
+        } else if (e.keyCode == 72) { // H 切換視角
+          // 函式專業寫法切換
+          this.bool = !this.bool
+          this.camera.setAttribute('camera', {
+            active: this.bool,
+          });
+          // console.log(!this.camera_bool)
+          this.camera_f.setAttribute('camera', {
+            active: !this.bool,
+          });
+          // console.log(this.camera)
+
+          if (this.bool) {
+            this.rings.setAttribute('visible', false);
+            this.schematic.setAttribute('visible', false);
+            // this.bgm_f.components.sound.stopSound();
+            // this.bgm.components.sound.playSound();
+            // console.log("aaa")
+
+          } else {
+            this.rings.setAttribute('visible', true);
+            this.schematic.setAttribute('visible', true);
+            // this.bgm.components.sound.stopSound();
+            // this.bgm_f.components.sound.playSound();
+            // document.querySelector('#rings').components.geometry.flushToDOM();
+            // document.querySelector('[name="Anime"]').emit('replay');
+            // document.querySelector('.Anime').emit('replay');
+
+            // document.querySelector('.Anime2').emit('replay');
+            document.querySelectorAll('.Anime').forEach(function (item) {
+              item.emit('replay')
+            })
+            // this.schematic.flushToDOM();
+          }
+        }
+
+      },
+      onKeyUp_shoot: function (e) {
+        if (e.keyCode == 32) {
+          // this.sounds.components.sound.stopSound();
+          // this.fire.components['particle-system'].stopParticles();
+          this.explosion2_img.setAttribute('visible', false);
+        }
+      }
+    });
+
+    /**
+     * Change color when hit.
+     */
+    AFRAME.registerComponent('hit-handler', {
+      // dependencies: ['material'],
+
+      init: function () {
+        var color;
+        var el = this.el;
+        this.turretNodeListFinal = [];
+        var life = 10;
+        var mylife = 10;
+        var enemy_win = false;
+        const healthBar = document.getElementById("healthBar");
+        this.fire = document.querySelector('#fire');
+        this.fire.components['particle-system'].stopParticles();
+        self.fire2 = document.querySelector('#fire2');
+        self.fire2.components['particle-system'].stopParticles();
+        // const healthBar_enemy_bg = document.getElementById("bg");
+        const healthBar_enemy_life = document.getElementById("life");
+        this.enemy = document.getElementById("enemy");
+
+        self.sounds = document.querySelector('#boom_sound_enemy');
+        // color = new THREE.Color();
+        // color.set('#666');
+        // el.components.material.material.color.copy(color);
+
+        this.enemy.addEventListener('model-loaded', () => {
+          const obj = this.enemy.getObject3D('mesh');
+          obj.traverse(node => {
+            console.log(node.name)
+            if (node.name.includes('Turret') || node.name.includes('Manual_MG') || node.name.includes(
+                'RC_MG') || node.name.includes('Barrel') || (node.name.includes('Alpha') && node.material
+                .name == 'glass_png')) {
+              if (!(node.material.name == 'tex_0025_1_png')) {
+                this.turretNodeListFinal.push(node);
+              }
+
+            }
+            if (node.name == 'Alpha' && node.material.name == 'tex_0026_3_png') {
+              node.visible = false;
+            }
+          });
+
+          console.log("AAA", this.turretNodeListFinal)
+        });
+
+        socket.on('hitting', function (msg, cb) {
+          mylife -= 1
+          if (msg.enemy == mySid) {
+            console.log("be attacked...")
+            console.log((mylife * 10).toString() + "%")
+            healthBar.style.width = (mylife * 10).toString() + "%"
+            // healthBar.setAttribute('style', {
+            //   width: (mylife*10).toString() + "%"
+            // })
+            var img = document.getElementById('over');
+            if (mylife <= 0) {
+              // this.turretNodeListFinal.forEach(function (item) {
+
+              //   item.rotation.z = 19.3;
+              //   item.position.z = -1.2;
+              //   item.position.x = -0.8;
+              //   item.rotation.x = -0.3;
+              // });
+              // $('#over').style.visibility = "visible";
+              // $('#over').visible();
+
+              img.style.visibility = 'visible';
+              self.fire2.components['particle-system'].startParticles();
+              self.sounds.components.sound.playSound();
+              enemy_win = true
+            }
+          }
+          // if (enemy_win && msg.enemy != mySid) {
+          //   var img = document.getElementById('win');
+          //   img.style.visibility = 'visible';
+          // }
+
+          // console.log(cb)
+        });
+
+        el.addEventListener('hit', () => {
+          // color.addScalar(0.05);
+          // el.components.material.material.color.copy(color);
+          // healthBar.setAttribute("value", 100);
+          socket.emit('hit', {
+            data: 1,
+            enemy: youSid,
+            room: $('#join_room').val()
+          });
+          life -= 1
+          healthBar_enemy_life.setAttribute("geometry", {
+            height: 0.7,
+            width: (life / 10) * 6
+          })
+          if (!(life == 0)) {
+            healthBar_enemy_life.setAttribute("position", {
+              x: -((life / 10 - 1) * 6 / 2),
+              y: 4,
+              z: 0
+            })
+          }
+
+          console.log("attacking")
+        });
+
+        // el.addEventListener('self_hit', () => {
+        //   // color.addScalar(0.05);
+        //   // el.components.material.material.color.copy(color);
+        //   // healthBar.setAttribute("value", 100);
+
+        //   console.log("be attacked...")
+        //   healthBar.setAttribute('style', {
+        //     width: life_persent + "%"
+        //   })
+        // });
+
+        el.addEventListener('die', () => {
+          // color.setRGB(1, 0, 0);
+          // el.components.material.material.color.copy(color);
+          this.turretNodeListFinal.forEach(function (item) {
+
+            item.rotation.z = 19.3;
+            item.position.z = -1.2;
+            item.position.x = -0.8;
+            item.rotation.x = -0.3;
+          });
+          this.fire.components['particle-system'].startParticles();
+          self.sounds.components.sound.playSound();
+          var img = document.getElementById('win');
+          img.style.visibility = 'visible';
+        });
+
+
+
+      }
+    });
+    AFRAME.registerComponent('follow', {
+      schema: {
+        target: {
+          type: 'selector'
+        },
+        speed: {
+          type: 'number'
+        }
+      },
+
+      init: function () {
+        this.directionVec3 = new THREE.Vector3();
+      },
+
+      tick: function (time, timeDelta) {
+        var directionVec3 = this.directionVec3;
+
+        // Grab position vectors (THREE.Vector3) from the entities' three.js objects.
+        var targetPosition = this.data.target.object3D.position;
+        var currentPosition = this.el.object3D.position;
+
+        // Subtract the vectors to get the direction the entity should head in.
+        directionVec3.copy(targetPosition).sub(currentPosition);
+
+        // Calculate the distance.
+        var distance = directionVec3.length();
+
+        // Don't go any closer if a close proximity has been reached.
+        if (distance < 1) {
+          return;
+        }
+
+        // Scale the direction vector's magnitude down to match the speed.
+        var factor = this.data.speed / distance;
+        ['x', 'y', 'z'].forEach(function (axis) {
+          directionVec3[axis] *= factor * (timeDelta / 1000);
+        });
+
+        // Translate the entity in the direction towards the target.
+        this.el.setAttribute('position', {
+          x: currentPosition.x + directionVec3.x,
+          y: currentPosition.y + directionVec3.y,
+          z: currentPosition.z + directionVec3.z
+        });
+      }
+    });
+  </script>
+  <script>
+    AFRAME.registerComponent('alpha-test', {
+      dependencies: ['material'],
+      init: function () {
+        this.el.getObject3D('mesh').material.alphaTest = 0.1;
+      }
+    });
+  </script>
+  <script>
+    AFRAME.registerComponent('obj_position', {
+      init: function () {
+        // console.log("SSSSSSSSSSSSSSSSSSS")
+        var ee = this.el
+        const position = this.el.getAttribute('position')
+        console.log(position)
+        socket.on('my_num', function (msg, cb) {
+          console.log("myNum:", msg.data)
+          // myNum = msg.data;
+          if (msg.data == 1 && msg.player2sid == mySid) {
+            ee.setAttribute('position', {
+              x: -position.x,
+              y: position.y,
+              z: -position.z
+            });
+            myNum = msg.data;
+            console.log("change obj...")
+          }
+
+          if (myNum == 1) {
+            youSid = msg.other
+          } else if (myNum == 0) {
+            youSid = msg.player2sid
+          }
+        });
+
+      }
+    });
+  </script>
+</head>
+
+<body>
+  <a-scene light="defaultLightsEnabled: true"
+    inspector="https://cdn.jsdelivr.net/gh/aframevr/aframeinspector@master/dist/aframe-inspector.min.js"
+    physics="driver: ammo; debug: false; gravity: -9.8; debugDrawMode: 1">
+    <a-assets>
+      <!-- <a-asset-item id="tank_gltf" src="./tank/tank2/Abrams_BF3.gltf"></a-asset-item> -->
+      <!-- <a-asset-item id="tank_enemy" src="./tank/t-90/scene.gltf"></a-asset-item> -->
+      <a-asset-item id="tank_enemy" src="./tank/tank2/Abrams_BF3_enemy.gltf"></a-asset-item>
+      <a-asset-item id="Abrams_BF3-obj" src="./tank/tank2/Abrams_BF3.obj"></a-asset-item>
+      <a-asset-item id="Abrams_BF3-mtl" src="./tank/tank2/Abrams_BF3.mtl"></a-asset-item>
+
+      <a-asset-item id="asia_building" src="./building/asia_building/scene.gltf"></a-asset-item>
+      <a-asset-item id="one_old_building" src="./building/building/scene.gltf"></a-asset-item>
+      <a-asset-item id="three_old_building" src="./building/building_set/scene.gltf"></a-asset-item>
+      <a-asset-item id="futuristic_ghetto_building" src="./building/futuristic_ghetto_building/scene.gltf">
+      </a-asset-item>
+      <a-asset-item id="ruin_building" src="./building/ruin_building/scene.gltf"></a-asset-item>
+      <a-asset-item id="urban_building" src="./building/urban_building/scene.gltf"></a-asset-item>
+
+
+      <a-mixin id="controller" tracked-controls="autoHide: false">
+
+        <a-mixin id="image" geometry="height: 2; width: 2"></a-mixin>
+        <a-mixin id="delayVisible" event-set__loaded="visible: true" visible="false"></a-mixin>
+        <img id="glow1" src="img/glow1.png">
+        <img id="ring1" src="img/ring1.png">
+        <img id="ring2" src="img/ring2.png">
+        <img id="ring3" src="img/ring3.png">
+        <img id="ring4" src="img/ring4.png">
+        <img id="ring5" src="img/ring5.png">
+        <img id="schematic1" src="img/schematic1.png">
+        <img id="schematic2" src="img/schematic2.png">
+        <img id="schematic3" src="img/schematic3.png">
+        <img id="schematic4" src="img/schematic4.png">
+        <img id="schematic5" src="img/schematic5.png">
+        <img id="text2" src="img/text2.png">
+        <img id="text4" src="img/text4.png">
+
+        <img id="explosion2" src="img/explosion2.png">
+
+        <audio id="drive" src="sound/drive.mp3" preload="auto"></audio>
+        <audio id="attack" src="sound/attack.mp3" preload="auto"></audio>
+        <audio id="boom" src="sound/boom.mp3" preload="auto"></audio>
+        <audio id="bgm" src="sound/bgm.mp3" preload="auto"></audio>
+    </a-assets>
+
+
+    <!-- <a-entity supercraft-loader="name: icky-snake"></a-entity> -->
+    <a-entity id="sun" class="environment"
+      light="intensity: 0.7; castShadow: true; shadowCameraLeft: -10; shadowCameraBottom: -10; shadowCameraRight: 10; shadowCameraTop: 10; target: #tank_me; angle: 0;"
+      position="0 5 0" visible="" target="tank_me"></a-entity>
+
+    <a-entity id="env" environment="preset: yavapai"></a-entity>
+    <!-- <a-plane position="0 0 0" rotation="90 0 0" width="1000" height="1000" color="#7BC8A4" shadow
+    physics_obj="body:static"></a-plane> -->
+
+    <!-- <a-mountain physics_obj="body:static;shape:none" id="moun" mountain="" position="2.32167 -0.66509 4.24274"
+      scale="0.01 0.01 0.01"></a-mountain> -->
+
+    <!-- <a-entity spe-particles="texture: ./assets/explosion_sheet.png; texture-frames: 5 5; distribution: sphere; radius: .1; particle-count: 20; max-age: 1; size: 16; active-multiplier: .5"> -->
+
+
+
+    <a-box id='me' car animation-mixer rotation="0 90 0" position="0 0.6 0" physics_obj="body:static;shape:none"
+      material="visible: false">
+      <a-entity id="camera" camera="fov: 80; zoom: 1;active: false" position="-3 4 0" orbit-controls="
+      autoRotate: false;
+      target: #tank_me;
+      enableDamping: true;
+      enableKeys:true;
+      dampingFactor: 0.25;
+      rotateSpeed:0.25;
+      minDistance:3;
+      maxDistance:100; enableKeys: false; 
+      enablePan: false;
+      maxPolarAngle: 3.142" mouse-cursor=" "
+        look-controls="enabled: false; magicWindowTrackingEnabled: false; touchEnabled: false; mouseEnabled: false">
+        <a-entity geometry="primitive: cone; radiusTop: 0" scale="0.33 1 0.33" position="" rotation="90 0 0"
+          material="color: #0099ff; transparent: true; opacity: 0.5" visible="false"></a-entity>
+        <a-entity id="bgm" sound="src: #bgm;volume:1; autoplay: true;loop:true"></a-entity>
+      </a-entity>
+      <a-entity id="camera_f" camera="active: true" position="0 1.8 -1.63309" rotation="-3.3031016889291958 0 0"
+        data-aframe-inspector-original-camera="" touch-controls="">
+        <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 -0.02164 -4.10006" scale="1.5 1.5 1.5"
+          geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03" material="color: red; shader: flat"
+          raycaster="" event-set__loaded="_delay: 1000">
+        </a-entity>
+        <!-- <a-entity id="fire" position="0 -0.02 -4.1" particle-system="color: #EF0000, #44CC00; duration: 0.; particleCount: 10;maxParticleCount:10;accelerationValue:0, 0, 0; velocitySpread:0, 50, 0;" rotation="-90 0 0"></a-entity> -->
+        <!-- <a-entity id="fire" position="0 -0.02 -4.1" particle-system="texture: ./img/explosion.png;color: #EF0000, #44CC00; duration: 0.01; particleCount: 100;maxParticleCount:100;" rotation="-90 0 0"></a-entity> -->
+        <a-entity id="rings-group-1" scale="0.6 0.6 0.6" position="0 -0.02164 -4.10006" visible="true">
+          <a-image alpha-test mixin="delayVisible" mixin="image" src="#ring5" scale="1.2 1.2 1.2" position="0 0 0"
+            event-set__loaded="_delay: 1000">
+            <a-image id="explosion2_img" visible="false" alpha-test mixin="image" src="#explosion2" scale="1 1 1"
+              position="0 0 0" event-set__loaded="_delay: 1000">
+
+            </a-image>
+          </a-image>
+          <a-image alpha-test class="Anime" mixin="delayVisible" mixin="image" src="#ring4" scale="1.2 1.2 1.2"
+            position="0 0 .01" event-set__loaded="_delay: 1000"
+            animation__scale="property: scale; from: 1 1 1; to: 1.25 1.25 1.25; delay: 1000; dur: 250; easing: easeOutCubic"
+            animation__1="property: scale; from: 1 1 1; to: 1.25 1.25 1.25; dur: 250; easing: easeOutCubic; startEvents: replay">
+          </a-image>
+          <a-image alpha-test class="Anime" mixin="delayVisible" mixin="image" src="#ring3" position="0 0 .02"
+            event-set__loaded="_delay: 1200"
+            animation__scale="property: scale; from: 1 1 1; to: 1.25 1.25 1.25; delay: 1200; dur: 250; easing: easeOutCubic; "
+            animation__1="property: scale; from: 1 1 1; to: 1.25 1.25 1.25; dur: 250; easing: easeOutCubic; startEvents: replay">
+          </a-image>
+        </a-entity>
+        <a-entity id="schematic-2" position="0 -0.18978 -2.49927" scale="0.7 0.7 0.7" visible="true">
+          <!-- <a-image mixin="image delayVisible" src="#glow1" scale="5 5 5" position="0 0 -2" event-set__loaded="_delay: 1500"></a-image> -->
+          <!-- <a-image mixin="image delayVisible" src="#ring2" scale="1.75 1.75 1.75" position="0 0 -1.2" event-set__loaded="_delay: 1400"></a-image> -->
+          <a-image alpha-test mixin="image delayVisible" src="#ring5" scale="1.2 1.2 1.2" position="0 -1.5 -2.1"
+            event-set__loaded="_delay: 1550"></a-image>
+          <a-image alpha-test mixin="image delayVisible" src="#schematic5" scale="2 2 2" position="2.68631 0 -1.02"
+            opacity="0.75" event-set__loaded="_delay: 1500"></a-image>
+          <a-image alpha-test mixin="image delayVisible" src="#schematic4" scale="1.5 1.5 1.5"
+            position="0.30638 -1.98703 -0.95508" rotation="0 0 90" opacity="0.75" event-set__loaded="_delay: 1500">
+          </a-image>
+          <a-image alpha-test alpha-test mixin="image delayVisible" src="#schematic3" scale="1 1 1" position="0 2.7 -1"
+            opacity="0.75" event-set__loaded="_delay: 1450"></a-image>
+          <a-image alpha-test mixin="image delayVisible" src="#schematic1" scale="2 2 2" position="-0.4 0 0 "
+            event-set__loaded="_delay: 1400">
+          </a-image>
+          <a-image alpha-test mixin="image delayVisible" src="#text2" scale=".5 .5 .5" position="-1 3 0.02"
+            event-set__loaded="_delay: 1350"></a-image>
+          <a-image mixin="image delayVisible" src="#text4" position="-2 -1.4316 0.06081"
+            event-set__loaded="_delay: 1300">
+          </a-image>
+        </a-entity>
+        <!-- <a-entity geometry="primitive: cone; radiusTop: 0" scale="0.33 1 0.33" position="" rotation="90 0 0"
+          material="color: #0099ff; transparent: true; opacity: 0.5"></a-entity> -->
+        <a-entity id="bgm_f" sound="src: #bgm;volume:1; autoplay: true;loop:true"></a-entity>
+      </a-entity>
+
+      <a-entity id="tank_me" obj-model="obj: #Abrams_BF3-obj; mtl: #Abrams_BF3-mtl" shadow="cast:true; receive:true"
+        scale="0.3 0.3 0.3" position="0 -0.37 0" rotation="0 -90 0" modify-materials
+        physics_obj="body:kinematic;isModel:true;" ammo-constraint="target:#me; ">
+        <!-- <a-entity id="tank_me" gltf-model="#tank_gltf" shadow="cast:true; receive:true" scale="0.3 0.3 0.3"
+        position="0 0.24 0" rotation="0 -90 0" modify-materials> -->
+        <a-entity id="gun" shooter="" click-to-shoot position="0 1.34509 -4.8178">
+
+        </a-entity>
+        <a-entity id="drive_sound" sound="src: #drive;loop:true;volume:1"></a-entity>
+        <a-entity id="attack_sound" sound="src: #attack;volume:2"></a-entity>
+        <a-entity id="boom_sound" sound="src: #boom;volume:2"></a-entity>
+        <a-entity id="fire2" position="0 0 0"
+          particle-system="texture: ./img/explosion.png; color: #EF0000, #44CC00; duration: 0.5; maxParticleCount: 2000; size: 3"
+          rotation=""></a-entity>
+      </a-entity>
+
+    </a-box>
+
+    <a-entity id="bulletTemp" bullet="damagePoints:  1.;  maxTime:  3;  poolSize:  2;  speed: 20"
+      geometry="primitive: sphere; radius: 0.1" scale="0.33 0.33 0.33" material="color: gray"></a-entity>
+
+    <a-plane physics_obj="body:static;" ammo-shape="type: box; emitCollisionEvents: true;"
+      geometry="height: 100; width: 100" rotation="90 0 0">
+    </a-plane>
+
+    <!-- <a-box id="target" position="0 3.75 -10" rotation="0 45 0" scale="2 2 2" color="purple" shadow
+      physics_obj="body:dynamic"></a-box> -->
+
+    <!-- <a-box obj_position id="a" position="5 3.75 -10" rotation="0 45 0" scale="2 2 2" color="purple" shadow
+      physics_obj="body:dynamic"></a-box> -->
+    <!-- <a-entity  gltf-model="./tank/tank2/Abrams_BF3_enemy2.gltf" 
+      scale="0.3 0.3 0.3" position="0 3.75 -10" physics_obj="body:dynamic;isModel:true" >
+    </a-entity> -->
+
+
+    <a-entity obj_position="" id="building1" gltf-model="#urban_building" scale="0.01 0.01 0.01"
+      position="7.87503 -0.37 -13.42703" rotation="" physics_obj="body: static; isModel: true"></a-entity>
+    <a-entity obj_position="" id="building2" gltf-model="#ruin_building" scale="0.1 0.1 0.1"
+      position="2.75764 -0.37 -4.13144" rotation="" physics_obj="body: static; isModel: true"></a-entity>
+    <a-entity obj_position="" id="building3" gltf-model="#asia_building" scale="0.05 0.05 0.05"
+      position="8.16395 0.58202 12.74864" rotation="" physics_obj="body: static; isModel: true"></a-entity>
+    <a-entity obj_position="" id="building4" gltf-model="#ruin_building" scale="0.1 0.1 0.1"
+      position="-17.75018 -0.37 18.40791" rotation="" physics_obj="body: static; isModel: true"></a-entity>
+    <a-entity obj_position="" id="building5" gltf-model="#urban_building" scale="0.01 0.01 0.01"
+      position="-7.52412 -0.37 14.76681" rotation="" physics_obj="body: static; isModel: true"></a-entity>
+    <a-entity obj_position="" id="building6" gltf-model="#three_old_building" scale="0.55 0.55 0.55"
+      position="-15.842 -0.37 9.9546" rotation="" physics_obj="body: static; isModel: true"></a-entity>
+    <a-entity obj_position="" id="building7" gltf-model="#one_old_building" scale="0.008 0.008 0.008"
+      position="-4.33228 -0.37 -19.47953" rotation="0 90 0" physics_obj="body: static; isModel: true"></a-entity>
+
+    <!-- <a-entity obj_position id="building1" gltf-model="#asia_building" scale="0.03 0.03 0.03" position="0 -0.37 0"
+      rotation="0 0 0" physics_obj="body:kinematic;isModel:true;"></a-entity>
+    <a-entity obj_position id="building2" gltf-model="#one_old_building" scale="0.003 0.003 0.003" position="0 -0.37 0"
+      rotation="0 0 0" physics_obj="body:kinematic;isModel:true;"></a-entity>
+    <a-entity obj_position id="building3" gltf-model="#three_old_building" scale="0.03 0.03 0.03" position="0 -0.37 0"
+      rotation="0 0 0" physics_obj="body:kinematic;isModel:true;"></a-entity>
+    <a-entity obj_position id="building4" gltf-model="#futuristic_ghetto_building" scale="0.03 0.03 0.03"
+      position="0 -0.37 0" rotation="0 0 0" physics_obj="body:kinematic;isModel:true;"></a-entity>
+    <a-entity obj_position id="building5" gltf-model="#ruin_building" scale="0.03 0.03 0.03" position="0 -0.37 0"
+      rotation="0 0 0" physics_obj="body:kinematic;isModel:true;"></a-entity>
+    <a-entity obj_position id="building6" gltf-model="#urban_building" scale="0.03 0.03 0.03" position="0 -0.37 0"
+      rotation="0 0 0" physics_obj="body:kinematic;isModel:true;"></a-entity> -->
+
+    <a-box id='you' car_enemy position="0 0.6 -10" material="visible: false" geometry="" class="target"
+      target="healthPoints: 10" hit-handler="" physics_obj="body:static;shape:none" rotation="0 0 0">
+      <a-entity id="enemy" gltf-model="#tank_enemy" scale="0.3 0.3 0.3" position="0 -0.37 0" rotation="0 180 0"
+        physics_obj="body:kinematic;isModel:true;" ammo-constraint="target:#you; ">
+        <a-entity>
+          <!-- <a-plane
+            material='color:grey; opacity: 0.5; shader: flat'>
+              <a-plane
+              material='color: #0F5; opacity: 0.7;  shader: flat'/>
+              <a-plane
+              material='color: #F03; opacity: 0.7; shader: flat'/>
+            </a-plane> -->
+          <a-entity id="fire" position="0 0 0"
+            particle-system="texture: ./img/explosion.png; color: #EF0000, #44CC00; duration: 0.5; maxParticleCount: 2000; size: 3"
+            rotation=""></a-entity>
+          <a-plane id="bg" color="#CCC" material="opacity: 0.7; shader: flat" geometry="height: 0.7; width: 6"
+            rotation="0 180 0" position="0 4 0"></a-plane>
+          <a-plane id="life" color="#F03" material="opacity: 0.7; shader: flat" geometry="height: 0.7; width: 6"
+            rotation="0 180 0" position="0 4 0"></a-plane>
+
+          <!-- <a-entity geometry="primitive: plane; height: 0.7; width: 6" rotation="0 0 0" position="0 4 0"
+    material="opacity: 0.7;shader: flat;transparent: false"> -->
+
+        </a-entity>
+      </a-entity>
+    </a-box>
+
+
+
+
+
+    <a-entity id="drive_sound" sound="src: #drive;loop:true;volume:1"></a-entity>
+    <a-entity id="attack_sound" sound="src: #attack;volume:2"></a-entity>
+    <a-entity id="boom_sound_enemy" sound="src: #boom;volume:5"></a-entity>
+    <!-- </a-entity> -->
+    <!-- <a-entity id="enemy" gltf-model="#tank_gltf" shadow="cast:true; receive:true" scale="0.3 0.3 0.3" rotation="0 -90 0">
+      </a-entity> -->
+    <!-- <a-entity id="enemy" gltf-model="#tank_enemy" scale="0.1 0.1 0.1" rotation="0 -90 0" position="0 0.24 0"> </a-entity> -->
+    <!-- <a-entity id="enemy" class="target" obj-model="obj: #Abrams_BF3-obj; mtl: #Abrams_BF3-mtl" target="healthPoints: 10"
+      scale="0.3 0.3 0.3" position="0 0.24 -4" hit-handler></a-entity> -->
+    <!-- <a-entity class="target" target="healthPoints: 10" geometry="primitive: box" material="color: teal" position="0 0 -4" hit-handler></a-entity> -->
+
+
+
+
+
+
+  </a-scene>
+
+  <div style='position: relative; right: 2%; bottom: 98%; text-align: center; z-index: 1; float: right;'>
+    <!-- <progress id="healthBar" style="width: 200px; height: 50px; background: #0f0;" max="100" value="30"></progress> -->
+    <h2 style="text-align: right;COLOR: crimson;text-shadow: 1px 1px 3px #0a0a0a;">Health Points</h2>
+    <div class="progress-bar blue stripes">
+
+      <span id="healthBar" style="width: 100%"></span>
+    </div>
+  </div>
+
+  <div style='position: relative; left: 6%; bottom: 22%; text-align: center; z-index: 1; float: left;'>
+    <table>
+      <tr>
+        <th colspan="3">坦克移動</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input id='w' type="image" img src="icon/letter-w.png" style="width:80px; height:80px;"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><input id='A' type="image" img src="icon/letter-a.png" style="width:80px; height:80px;"></td>
+        <td><input id='s' type="image" img src="icon/letter-s.png" style="width:80px; height:80px;"></td>
+        <td><input id='d' type="image" img src="icon/letter-d.png" style="width:80px; height:80px;"></td>
+      </tr>
+    </table>
+  </div>
+  <div style='position: relative; right: 27%; bottom: 22%; text-align: center; z-index: 1; float: right;'>
+    <table>
+      <tr>
+        <th colspan="3">發射</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input type="image" img src="icon/explosion.png" style="width:180px; height:180px;"></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <div style='position: relative; left: 22%; bottom: 22%; text-align: center; z-index: 1; float: right;'>
+    <table>
+      <tr>
+        <th colspan="3">砲管移動</th>
+      </tr>
+      <tr>
+        <td></td>
+        <td><input id='i' type="image" img src="icon/letter-i.png" style="width:80px; height:80px;"></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><input id='j' type="image" img src="icon/letter-j.png" style="width:80px; height:80px;"></td>
+        <td><input id='k' type="image" img src="icon/letter-k.png" style="width:80px; height:80px;"></td>
+        <td><input id='l' type="image" img src="icon/letter-l.png" style="width:80px; height:80px;"></td>
+      </tr>
+    </table>
+
+  </div>
+  <div style='position: relative;left: -11%; bottom: 97%; ; z-index: 1; float: left;'>
+    <p style="COLOR: aquamarine;">
+      <!-- Async mode is: <b>{{ async_mode }}</b><br> -->
+      Current transport is: <b><span id="transport"></span></b><br>
+      Average ping/pong latency: <b><span id="ping-pong"></span>ms</b>
+    </p>
+    <h2 style="COLOR: floralwhite;text-shadow: 3px 3px 3px #0a0a0a;" >Send:</h2>
+    <form class="mb-1 form-inline" id="emit" method="POST" action='#'>
+      <input class="mr-sm-1" style="width:7rem" type="text" name="emit_data" id="emit_data" placeholder="Message">
+      <input type="submit" class="btn btn-primary btn-sm" value="Echo">
+    </form>
+    <form class="mb-1 form-inline" id="broadcast" method="POST" action='#'>
+      <input class="mr-sm-1" style="width:7rem" type="text" name="broadcast_data" id="broadcast_data"
+        placeholder="Message">
+      <input type="submit" class="btn btn-primary btn-sm" value="Broadcast">
+    </form>
+    <form class="mb-1 form-inline" id="join" method="POST" action='#'>
+      <input class="mr-sm-1" style="width:7rem" type="text" name="join_room" id="join_room" placeholder="Room Name">
+      <input type="submit" class="btn btn-success btn-sm" value="Join Room">
+    </form>
+    <form class="mb-1 form-inline" id="leave" method="POST" action='#'>
+      <input class="mr-sm-1" style="width:7rem" type="text" name="leave_room" id="leave_room" placeholder="Room Name">
+      <input type="submit" class="btn btn-warning btn-sm" value="Leave Room">
+    </form>
+    <form class="mb-1 form-inline" id="close" method="POST" action="#">
+      <input class="mr-sm-1" style="width:7rem" type="text" name="close_room" id="close_room" placeholder="Room Name">
+      <input type="submit" class="btn btn-warning btn-sm" value="Close Room">
+    </form>
+    <form class="mb-1 form-inline" id="send_room" method="POST" action='#'>
+      <input class="mr-sm-1" style="width:7rem" type="text" name="room_name" id="room_name" placeholder="Room Name">
+      <input class="mr-sm-1" style="width:7rem" type="text" name="room_data" id="room_data" placeholder="Message">
+      <input type="submit" class="btn btn-info btn-sm" value="Send to Room">
+    </form>
+    <form class="mb-1 form-inline" id="disconnect" method="POST" action="#">
+      <input type="submit" class="btn btn-danger btn-sm" value="Disconnect">
+    </form>
+    <h2 style="margin-top: 20px;margin-bottom: 0px;COLOR: floralwhite;text-shadow: 3px 3px 3px #0a0a0a;">Receive:</h2>
+    <div id="log" style="width:300px;height:250px;overflow:auto;COLOR: floralwhite;text-shadow: 2px 2px 3px #0a0a0a;"></div>
+  </div>
+  <img id='over' style='position: relative;text-align: center; z-index: 1;left: -8%; bottom: 115%;visibility:hidden'
+    src="img/over.png"></img>
+  <img id='win' style='position: relative;text-align: center; z-index: 1;left: 31%; bottom: 155%;visibility:hidden'
+    src="img/win.png"></img>
+</body>
+
+</html>
